@@ -19,7 +19,7 @@ public class PrincipalPanel extends JPanel{
 		this.setPreferredSize(new Dimension(700, 500));
 		
 		Drawzone = new DrawArea();
-		this.add(Drawzone, BorderLayout.CENTER);
+		this.add(Drawzone, BorderLayout.WEST);
 		
 		buttonarea = new ButtonArea();
 		this.add(buttonarea, BorderLayout.EAST);
