@@ -4,6 +4,7 @@ public class FreemanCode {
 	
 	private String freeman;
 	private int number;
+	private int editDistance;
 	
 	public FreemanCode(String f, int n){
 		freeman = f;
@@ -26,6 +27,16 @@ public class FreemanCode {
 		this.number = number;
 	}
 	
+	
+	
+	public int getEditDistance() {
+		return editDistance;
+	}
+
+	public void setEditDistance(int editDistance) {
+		this.editDistance = editDistance;
+	}
+
 	public static String calcCodeFreeman(int[][] matrice) {
 
 		String codeFreeman = "";
