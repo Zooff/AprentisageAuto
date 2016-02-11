@@ -12,10 +12,11 @@ public class KNN {
 		
 	}
 	
-	public int Knn(ArrayList<FreemanCode> listCodeFreeman, String codeFreeman, int k) {
+	public static int Knn(ArrayList<FreemanCode> listCodeFreeman, String codeFreeman, int k) {
 		
 		//int[] tabEditDistance;		
 		
+		System.out.println(listCodeFreeman.toString());
 		
 		for (int i = 0; i < listCodeFreeman.size(); i++) {
 			Collections.sort(listCodeFreeman, new Comparator<FreemanCode>() {
@@ -29,17 +30,12 @@ public class KNN {
 					return 0;
 				}
 			});
-			//tabEditDistance[i] = minDistance(listCodeFreeman.get(i), codeFreeman);
 		}
 		
-		
+		System.out.println(listCodeFreeman.toString());
 		
 		return 0;
 		
-	}
-	
-	public static void main(String[] args) {
-	
 	}
 
 }
