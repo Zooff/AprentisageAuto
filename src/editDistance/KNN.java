@@ -19,18 +19,24 @@ public class KNN {
 		System.out.println(listCodeFreeman.toString());
 		
 		for (int i = 0; i < listCodeFreeman.size(); i++) {
-			Collections.sort(listCodeFreeman, new Comparator<FreemanCode>() {
-
-				@Override
-				public int compare(FreemanCode o1, FreemanCode o2) {
-					if (o1.getEditDistance() < o2.getEditDistance())
-						return -1;
-					if (o1.getEditDistance() > o2.getEditDistance())
-						return 1;
-					return 0;
-				}
-			});
+			
+			FreemanCode c = listCodeFreeman.get(i);
+			c.setEditDistance(EditDistance.minDistance(c.getFreeman(), codeFreeman));
+			
 		}
+		
+		
+		Collections.sort(listCodeFreeman, new Comparator<FreemanCode>() {
+
+			@Override
+			public int compare(FreemanCode o1, FreemanCode o2) {
+				if (o1.getEditDistance() < o2.getEditDistance())
+					return -1;
+				if (o1.getEditDistance() > o2.getEditDistance())
+					return 1;
+				return 0;
+			}
+		});
 		
 		System.out.println(listCodeFreeman.toString());
 		
