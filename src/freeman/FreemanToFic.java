@@ -8,7 +8,7 @@ public class FreemanToFic {
 	public static void Write(FreemanCode code){
 		FileWriter f = null;
 		try {
-			f = new FileWriter(new File("/home/zooff/Documents/workspace-sts-3.7.1.RELEASE/ApprentisageAuto/src/freeman/test.txt"), true);
+			f = new FileWriter(new File("resources/test.txt"), true);
 			
 			f.write(code.format());		
 			
