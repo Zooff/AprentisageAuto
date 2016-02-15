@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame {
 	
 	private PrincipalPanel pan;
+	private MenuBar bar;
 	
 	public MainWindow(){
 		this.setTitle("AA Project");
@@ -18,6 +19,9 @@ public class MainWindow extends JFrame {
 		
 		pan = new PrincipalPanel();
 		this.setContentPane(pan);
+		
+		bar = new MenuBar();
+		this.setJMenuBar(bar);
 		
 		this.pack();
 		this.setVisible(true);

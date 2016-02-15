@@ -9,7 +9,6 @@ public class Main {
 		
 		Constant.TDATA = new TrainingData();
 		Constant.TDATA.Load("resources/test.txt");
-		//System.out.println(train.data);
 		MainWindow main = new MainWindow();
 	}
 
