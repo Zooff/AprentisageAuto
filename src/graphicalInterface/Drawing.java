@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Drawing extends JPanel implements MouseListener, MouseMotionListener{
@@ -39,6 +40,13 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	
 	public BufferedImage newDraw(){
 		img = new BufferedImage(200, 150, BufferedImage.TYPE_INT_ARGB);
+	
+		/*for (int x = 0; x < 200; x++) {
+			for (int y = 0; y < 150; y++) {
+				img.setRGB(x, y, 0xFFFFFFFF);
+			}
+		}*/
+		
 		g2 = img.createGraphics();
 		g2.setBackground(Color.WHITE);
 		g2.setColor(Color.BLACK);
@@ -60,18 +68,21 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		x2 = x1;
 		y2 = y1;
 		x1 = e.getX();
 		y1 = e.getY();
+		
+		if(x1 < 0 || x1 > 200 || y1 < 0 || y1 > 150) {
+			JOptionPane.showMessageDialog(null, "Don't exit the draw area !", "Warning", JOptionPane.ERROR_MESSAGE);
+			reset();
+		}
 		
 		repaint();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		x1 = e.getX();
 		y1 = e.getY();
 		x2 = x1;
@@ -80,33 +91,25 @@ public class Drawing extends JPanel implements MouseListener, MouseMotionListene
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		x2 = e.getX();
 		y2 = e.getY();
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		x1 = e.getX();
 		y1 = e.getY();
 	}
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }

@@ -36,7 +36,7 @@ public class TrainingData {
 				int number = scan.nextInt();
 				data.add(new FreemanCode(freeman, number));
 			}
-			
+			System.out.println(("File Loaded"));
 			read.close();
 			
 		}
