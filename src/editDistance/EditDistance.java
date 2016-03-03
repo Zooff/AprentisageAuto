@@ -5,6 +5,11 @@ public class EditDistance {
 	public static int minDistance(String freeman1, String freeman2) {
 		int len1 = freeman1.length();
 		int len2 = freeman2.length();
+		int[][] poids = { { 0, 1, 2, 3, 4, 3, 2, 1 },
+				{ 1, 0, 1, 2, 3, 4, 3, 2 }, { 2, 1, 0, 1, 2, 3, 4, 3 },
+				{ 3, 2, 1, 0, 1, 2, 3, 4 }, { 4, 3, 2, 1, 0, 1, 2, 3 },
+				{ 3, 4, 3, 2, 1, 0, 1, 2 }, { 2, 3, 4, 3, 2, 1, 0, 1 },
+				{ 1, 2, 3, 4, 3, 2, 1, 0 } };
 
 		// len1+1, len2+1, because finally return dp[len1][len2]
 		int[][] dp = new int[len1 + 1][len2 + 1];
@@ -29,9 +34,23 @@ public class EditDistance {
 					dp[i + 1][j + 1] = dp[i][j];
 				} else {
 					int replace = dp[i][j] + 2;
+
+					if (poids[Character.getNumericValue(c1)][Character
+							.getNumericValue(c2)] == 1) {
+						replace = dp[i][j] + 1;
+					} else if (poids[Character.getNumericValue(c1)][Character
+							.getNumericValue(c2)] == 2
+							|| poids[Character.getNumericValue(c1)][Character
+									.getNumericValue(c2)] == 3) {
+						replace = dp[i][j] + 2;
+					} else if (poids[Character.getNumericValue(c1)][Character
+							.getNumericValue(c2)] == 4) {
+						replace = dp[i][j] + 3;
+					}
+					
 					int insert = dp[i][j + 1] + 1;
 					int delete = dp[i + 1][j] + 1;
-
+			
 					int min = replace > insert ? insert : replace;
 					min = delete > min ? min : delete;
 					dp[i + 1][j + 1] = min;
@@ -43,7 +62,7 @@ public class EditDistance {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("ED : " + minDistance("322444444444444444444444444444444444444444444444444444444444444444444444454454444444444466660000000000000100100000000000000000000000000000000000000000000000000000000000075654656565565565555554554544666600071021101101021022121121102121211211021", "222222322323232232222232232323222222222222322222222222322232232222222224444444545555455555455554454455455322222222222222222444466666666666666666666554545454454454445444454455443545354454444666600071001007100100110010001000010010101010766666666666666600002222222222222222221101101100100110111111011101107665766676676766666666667666666666576676767667666667667676766766660000"));
+		System.out.println("ED : " + minDistance("0", "4"));
 	}
 
 }
