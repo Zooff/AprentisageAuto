@@ -33,24 +33,20 @@ public class CrossValidation {
 		int compteur = 0;
 		double pourcent = 0;
 
-		for (int j = 0; j < 10; j++) {
-
-			for (i = 0; i < nbTest; i++) {
-				test.add(i, Constant.TDATA.data.get(compteur));
-				compteur++;
-			}
+		for (int j = 0; j < 9; j++) {
 			System.out.println("C : " + compteur);
 			for (i = 0; i < Constant.TDATA.data.size(); i++) {
-				if (i > (compteur))
-					training.add(i - compteur -1, Constant.TDATA.data.get(i));
-				if (i < compteur - nbTest)
-					training.add(i, Constant.TDATA.data.get(i));
+				if (i >= compteur && i < compteur + nbTest){
+					test.add(Constant.TDATA.data.get(i));
+				}
+				else {
+					training.add(Constant.TDATA.data.get(i));
+				}
 			}
-
+			
 			for (i = 0; i < nbTest; i++) {
 				int classe = KNN.Knn(training, test.get(i).getFreeman(), 3);
 				//System.out.println("knn " + classe);
-
 				if (classe == test.get(i).getNumber()) {
 					pourcent += 1;
 				}
@@ -59,19 +55,34 @@ public class CrossValidation {
 			tabPourcentage[j] = pourcent / nbTest;
 			pourcent = 0;
 			System.out.println(tabPourcentage[j]);
+			compteur += nbTest;
 			training.clear();
 			test.clear();
 		}
 		
-		System.out.println(tabPourcentage.toString());
+		// Le dernier test
+		for (i = 0; i < Constant.TDATA.data.size(); i++){
+			if (i >= compteur && i < compteur + nbTest){
+				test.add(Constant.TDATA.data.get(i));
+			}
+			else {
+				training.add(Constant.TDATA.data.get(i));
+			}
+		}
+		
+		for(i = 0; i < test.size(); i++){
+			int classe = KNN.Knn(training, test.get(i).getFreeman(), 3);
+			if (classe == test.get(i).getNumber()) {
+				pourcent += 1;
+			}
+		}
+		
+		tabPourcentage[9] = pourcent/test.size();
+		
 		double somme = 0;
 		for (i = 0; i<tabPourcentage.length; i++)
 			somme += tabPourcentage[i];
 		System.out.println("Moyenne : " + somme/tabPourcentage.length);
-	}
-
-	public static void main(String[] args) {
-
 	}
 
 }
