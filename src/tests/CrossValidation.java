@@ -36,7 +36,7 @@ public class CrossValidation {
 		for (int j = 0; j < 10; j++) {
 
 			for (i = 0; i < nbTest; i++) {
-				test.add(compteur, Constant.TDATA.data.get(i));
+				test.add(i, Constant.TDATA.data.get(compteur));
 				compteur++;
 			}
 			System.out.println("C : " + compteur);
@@ -59,6 +59,8 @@ public class CrossValidation {
 			tabPourcentage[j] = pourcent / nbTest;
 			pourcent = 0;
 			System.out.println(tabPourcentage[j]);
+			training.clear();
+			test.clear();
 		}
 		
 		System.out.println(tabPourcentage.toString());
