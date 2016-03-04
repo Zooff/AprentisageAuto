@@ -20,7 +20,7 @@ public class KNN {
 		for (int i = 0; i < 10; i++)
 			classTab[i] = 0;
 		
-		System.out.println(listCodeFreeman.toString());
+		//System.out.println(listCodeFreeman.toString());
 		
 		for (int i = 0; i < listCodeFreeman.size(); i++) {
 			
@@ -42,7 +42,7 @@ public class KNN {
 			}
 		});
 		
-		System.out.println(listCodeFreeman.toString());
+	//	System.out.println(listCodeFreeman.toString());
 		
 		for (int i = 0; i < k; i++){
 			int n = listCodeFreeman.get(i).getNumber();
@@ -91,7 +91,7 @@ public class KNN {
 				val = i;
 				max = classTab[i];
 			}
-			System.err.println(classTab[i] + " ");
+		//	System.err.println(classTab[i] + " ");
 		}
 		return val;
 		

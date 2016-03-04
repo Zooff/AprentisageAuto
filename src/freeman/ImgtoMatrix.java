@@ -97,7 +97,7 @@ public class ImgtoMatrix {
 	            }
 	        }
 	    }
-	    PrintMatrix();
+	    //PrintMatrix();
 	    return result;
 	}
 	
