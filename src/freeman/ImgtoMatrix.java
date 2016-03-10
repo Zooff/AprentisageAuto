@@ -16,7 +16,7 @@ public class ImgtoMatrix {
 		width = image.getWidth();
 		height = image.getHeight();
 		
-		System.out.println(width + "  " + height);
+		//System.out.println(width + "  " + height);
 		
 		result = new int[height][width];
 		
@@ -29,7 +29,7 @@ public class ImgtoMatrix {
 			}
 		}
 		
-		PrintMatrix();
+		//PrintMatrix();
 		return result;
 	}
 	

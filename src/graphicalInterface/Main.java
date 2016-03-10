@@ -1,6 +1,12 @@
 package graphicalInterface;
 
+import java.util.ArrayList;
+
+import freeman.FreemanCode;
+import freeman.ImgtoMatrix;
 import freeman.TrainingData;
+import neuralNetwork.Network;
+import tests.CrossValidation;
 
 public class Main {
 
@@ -9,9 +15,14 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Constant.TDATA = new TrainingData();
-		Constant.TDATA.Load("resources/test.txt");
+		Constant.TDATA.Load("resources/baseDim.txt");
 
-		MainWindow main = new MainWindow();
+		//MainWindow main = new MainWindow();
+		new CrossValidation();
+		
+		
+		
 	}
 
 }
+

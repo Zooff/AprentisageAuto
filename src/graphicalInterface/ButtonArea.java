@@ -14,6 +14,7 @@ import editDistance.KNN;
 import freeman.FreemanCode;
 import freeman.FreemanToFic;
 import freeman.ImgtoMatrix;
+import neuralNetwork.Network;
 
 public class ButtonArea extends JPanel implements ActionListener {
 
@@ -76,6 +77,10 @@ public class ButtonArea extends JPanel implements ActionListener {
 			String f = FreemanCode.calcCodeFreeman(mat);
 			int number = KNN.Knn(Constant.TDATA.data, f, 3);
 			result.setText(String.valueOf(number));
+			
+			Network nn = new Network(8);
+			nn.classify(ImgtoMatrix.toMatrix(Constant.DRAW.getImg()));
+			System.out.println(nn.getOutput());
 		}
 		
 	}

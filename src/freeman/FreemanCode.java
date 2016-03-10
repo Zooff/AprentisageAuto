@@ -64,12 +64,12 @@ public class FreemanCode {
 		Xc = X0;
 		Yc = Y0;
 
-		System.out.println("X0 = " + X0);
-		System.out.println("Y0 = " + Y0);
+		//System.out.println("X0 = " + X0);
+		//System.out.println("Y0 = " + Y0);
 
 		do {
 			direction = (direction + 6) % 8;
-			System.out.println("Direction = " + direction);
+			//System.out.println("Direction = " + direction);
 			do {
 				Xn = prochainPixelX(Xc, direction);
 				Yn = prochainPixelY(Yc, direction);
@@ -79,11 +79,11 @@ public class FreemanCode {
 			} while (matrice[Xn][Yn] != 1);
 			direction = (direction + 7) % 8; // Pour prendre la précédente direction
 			codeFreeman = codeFreeman.concat(Integer.toString(direction));
-			System.out.println("Code Freeman : " + codeFreeman);
+			//System.out.println("Code Freeman : " + codeFreeman);
 			Xc = Xn;
 			Yc = Yn;
-			System.out.println("Xc = " + Xc);
-			System.out.println("Yc = " + Yc);
+			//System.out.println("Xc = " + Xc);
+			//System.out.println("Yc = " + Yc);
 		} while (Xc != X0 || Yc != Y0);
 
 		return codeFreeman;
