@@ -15,28 +15,29 @@ public class CrossValidation {
 
 	double[] tabPourcentage;
 
-	public CrossValidation() {
-		tabPourcentage = new double[10];
+	public CrossValidation(double val) {
+		int taille = val == 0.1 ? 10 : 4;
+		tabPourcentage = new double[taille];
 		training = new ArrayList<>();
 		test = new ArrayList<>();
 		Collections.shuffle(Constant.TDATA.data, new Random(System.nanoTime()));
-		CalculCrossValidation(test, training, tabPourcentage);
+		CalculCrossValidation(val);
 	}
 
-	public void CalculCrossValidation(ArrayList<FreemanCode> test, ArrayList<FreemanCode> training,
-			double[] tabPourcentage) {
+	public void CalculCrossValidation(double val) {
 
-		int nbTest = (int) Math.ceil((double) Constant.TDATA.data.size() / 10);
-		// System.out.println(nbTest);
+		int tailleEff = (int)(Constant.TDATA.data.size() * val);
+		int nbTest = val == 0.1 ? 10 : 4;
+		System.out.println("nBT : "  +nbTest);
 
 		int i;
 		int compteur = 0;
 		double pourcent = 0;
 
-		for (int j = 0; j < 9; j++) {
+		for (int j = 0; j < nbTest - 1; j++) {
 			System.out.println("C : " + compteur);
 			for (i = 0; i < Constant.TDATA.data.size(); i++) {
-				if (i >= compteur && i < compteur + nbTest){
+				if (i >= compteur && i < compteur + tailleEff){
 					test.add(Constant.TDATA.data.get(i));
 				}
 				else {
@@ -55,7 +56,7 @@ public class CrossValidation {
 			tabPourcentage[j] = pourcent / nbTest;
 			pourcent = 0;
 			System.out.println(tabPourcentage[j]);
-			compteur += nbTest;
+			compteur += tailleEff;
 			training.clear();
 			test.clear();
 		}
@@ -77,7 +78,8 @@ public class CrossValidation {
 			}
 		}
 		
-		tabPourcentage[9] = pourcent/test.size();
+		
+		tabPourcentage[nbTest - 1] = pourcent/test.size();
 		
 		double somme = 0;
 		for (i = 0; i<tabPourcentage.length; i++)
